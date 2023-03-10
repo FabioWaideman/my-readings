@@ -1,0 +1,60 @@
+<div class="row g-0">
+
+  <div class="col-md-7 me-3">
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <%= cl_image_tag(current_user.avatar.key, transformation: [{ width: 200, height: 300, crop: :fit }]) %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title"><%= @user.username %></h4>
+            <p class="card-text"><strong>About me:</strong></p>
+            <p class="card-text"><%= @user.about %></p>
+            <p class="card-text"><strong>Books read:</strong> TO DO</p>
+            <p class="card-text"><strong>Reviews:</strong> TO DO</p>
+            <p class="card-text"><strong>Achievements:</strong> TO DO</p>
+            <p class="card-text"><small class="text-muted">Registered: <%= @user.created_at.strftime("%d %b %y") %></small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-0">
+      <div class= "d-flex justify-content-between">
+        <div class="card text-bg-light mb-3 me-1 flex-grow-1 col-md-5">
+          <div class="card-header">Books Read</div>
+          <div class="card-body">
+            <p class="card-text">TO DO</p>
+          </div>
+        </div>
+        <div class="card text-bg-light mb-3 ms-1 flex-grow-1 col-md-5">
+          <div class="card-header">Wishlist</div>
+          <div class="card-body">
+            <p class="card-text">TO DO</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-4">
+      <div class="card text-bg-light mb-3 flex-grow-1">
+      <div class="card-header">Achievements</div>
+      <div class="card-body">
+        <p class="card-text">TO DO TO DO TO DO</p>
+      </div>
+    </div>
+
+    <div class="card text-bg-light mb-3 flex-grow-1">
+      <div class="card-header">Friends</div>
+      <div class="card-body">
+        <p class="card-text">TO DO TO DO TO DO TO DO TO DOTO DOTO DOTO DOTO DOTO DOTO DOTO DOTO DOTO DOTO DO</p>
+      </div>
+    </div>
+
+    <%= link_to "Edit Profile", edit_user_registration_path, class:"btn btn-info" %>
+  </div>
+
+</div>
