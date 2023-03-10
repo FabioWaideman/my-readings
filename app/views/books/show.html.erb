@@ -1,0 +1,66 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <%# Book info %>
+      <div class="book-info">
+        <div class="book-content d-flex justify-content-between">
+          <div class="d-flex">
+            <div>
+              <%= image_tag @book.image_url, class: "img-fluid w-100", crop: :fill, style:"height: 300px;" %>
+            </div>
+            <div class="mx-3">
+              <h3><%= @book.title %></h3>
+              <ul class="list-group" style="list-style-type: none;">
+                <li><strong>Author:</strong> <%= @book.author %></li>
+                <li><strong>Category:</strong> <%= JSON.parse(@book.categories)[0] %></li>
+                <li><strong>Pages:</strong> <%= @book.page_count %></li>
+                <li><strong>Published:</strong> <%= @book.published_date %></li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <h3><i class="fa-regular fa-star"></i><%= @book.average_rating %><span class="fs-6">/5</span></h3>
+          </div>
+        </div>
+        <div class="book-description mt-3">
+          <h2>Description</h2>
+          <p><%= @book.description %></p>
+        </div>
+      </div>
+    </div>
+    <%# Readers %>
+    <div class="col-3">
+      <div class="card text-bg-light mb-3">
+          <div class="card-header">Readers</div>
+          <div class="card-body">
+            <p class="card-text">TO DO</p>
+          </div>
+        </div>
+    </div>
+  </div>
+      <%# Same author books %>
+      <div class="card text-bg-light mb-3">
+          <div class="card-header">Other books from <%= @book.author %></div>
+          <div class="card-body">
+            <p class="card-text">TO DO</p>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-4 border border-2 p-2">
+  <h2>Reviews</h2>
+  <% if @book.reviews.any? %>
+    <% @book.reviews.each do |review| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <p class="card-text"><%= review.content %></p>
+          <p class="card-text"><small class="text-muted"><%= review.user_name %> - <%= review.created_at.strftime("%d %b %y") %></small></p>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No reviews yet.</p>
+  <% end %>
+  <%= link_to "Add a Review", new_book_review_path(@book), class: "btn btn-primary" %>
+</div>
