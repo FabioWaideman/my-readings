@@ -1,4 +1,11 @@
 class ReviewPolicy < ApplicationPolicy
+  def new?
+    true
+  end
+
+  def create?
+    new?
+  end
 
   def update?
     record.user == user || user.admin?

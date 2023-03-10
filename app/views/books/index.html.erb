@@ -2,6 +2,18 @@
 <div class="container">
   <% @books.each do |book| %>
     <div class="card mb-3 mx-auto" style="max-width: 540px;">
+<<<<<<< HEAD
+      <%= link_to book_path(book) do %>
+        <div class="row g-0">
+          <div class="col-md-4">
+            <%= image_tag book.image_url, class: "img-fluid rounded-start w-75", alt: book.title %>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h4 class="card-title"><%= book.title %></h4>
+              <h5><%= book.author %></h6>
+            </div>
+=======
       <div class="row g-0">
         <div class="col-md-4">
           <img src=<%= book.image_url %>  class="img-fluid rounded-start w-75" alt= <%= book.title %> >
@@ -11,9 +23,10 @@
             <h4 class="card-title"><%= book.title %></h4>
             <h5><%= book.author %></h5>
             <%= link_to "See Book", book_path(book), class:"btn btn-info" %>
+>>>>>>> master
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
   <% end %>
 </div>
