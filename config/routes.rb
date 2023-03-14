@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :books, only: [:index, :show] do
     resources :reviews, only: %i[new create]
+    resources :bookmarks, only: %i[create]
   end
 
   resources :users, only: [:show]
+  resources :bookmarks, only: [:destroy, :update]
 end

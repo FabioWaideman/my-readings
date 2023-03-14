@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import MarkAsReadController from "./mark_as_read_controller"
+application.register("mark-as-read", MarkAsReadController)
