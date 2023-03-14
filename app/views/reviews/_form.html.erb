@@ -1,0 +1,7 @@
+<h2>Create a new review for "<%= book.title %>"</h2>
+<br>
+<%= simple_form_for([@book, @review]) do |f| %>
+  <%= f.input :rating, collection: 1..5, include_blank: false %>
+  <%= f.input :content %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>

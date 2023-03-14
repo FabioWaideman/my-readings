@@ -12,5 +12,6 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     authorize @book
+    @review = Review.new
   end
 end
