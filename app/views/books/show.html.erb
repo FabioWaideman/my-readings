@@ -48,19 +48,46 @@
         </div>
     </div>
 </div>
-<div class="container mt-4 border border-2 p-2">
-  <h2>Reviews</h2>
+
+
+<div class="container mt-4 mx-4">
+  <h2>Description</h2>
+  <p><%= @book.description %></p>
+</div>
+
+<div id="reviews" class="container mt-4 mx-4">
+  <div class="d-flex align-items-end">
+    <h2>Reviews</h2>
+    <p class="mx-2"><%= link_to "View all", book_reviews_path(@book) %></p>
+  </div>
+
   <% if @book.reviews.any? %>
-    <% @book.reviews.each do |review| %>
+    <% reviews = @book.reviews.shuffle.take(3) %>
+    <% reviews.each do |review| %>
       <div class="card mb-3">
         <div class="card-body">
-          <p class="card-text"><%= review.content %></p>
-          <p class="card-text"><small class="text-muted"><%= review.user_name %> - <%= review.created_at.strftime("%d %b %y") %></small></p>
+
+          <div class="d-flex justify-content-between">
+            <div class="d-flex flex-row">
+              <%= cl_image_tag(review.user.avatar.key, transformation: [{ width: 30, height: 30, crop: :thumb, gravity: :face, radius: :max }], class: "avatar rounded-circle") %>
+              <p class="card-text mx-2"><small class="text-muted"><%= review.user.username %> - <%= review.created_at.strftime("%d/%m/%Y") %></small></p>
+            </div>
+            <div>
+              <% if review.user == current_user %>
+                <%= link_to "Delete", book_review_path(@book, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+              <% end %>
+            </div>
+          </div>
+          <p class="card-text"><i class="fa-regular fa-star"></i><%= review.rating %></p>
+          <p class="card-text mt-2"><%= review.content %></p>
+
         </div>
       </div>
     <% end %>
   <% else %>
     <p>No reviews yet.</p>
   <% end %>
-  <%= link_to "Add a Review", new_book_review_path(@book), class: "btn btn-primary" %>
+
+  <%= link_to "Add a Review", new_book_review_path(@book), class: "btn btn-primary", remote: true %>
+
 </div>

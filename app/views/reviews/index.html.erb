@@ -1,0 +1,36 @@
+<h1>Reviews for <%= @book.title %></h1>
+
+<%= form_with(url: book_reviews_path(@book), method: "get") do %>
+  <div class="form-group">
+    <%= label_tag(:rating, "Filter by rating:") %>
+    <%= select_tag(:rating, options_for_select([['All', ''], ['1.0', 1.0], ['2.0', 2.0], ['3.0', 3.0], ['4.0', 4.0], ['5.0', 5.0]], params[:rating]), class: "form-control") %>
+  </div>
+  <%= submit_tag "Filter", class: "btn btn-primary my-2" %>
+<% end %>
+
+<% if @reviews.any? %>
+    <% @reviews.each do |review| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="d-flex flex-row">
+              <%= cl_image_tag(review.user.avatar.key, transformation: [{ width: 30, height: 30, crop: :thumb, gravity: :face, radius: :max }], class: "avatar rounded-circle") %>
+              <p class="card-text mx-2"><small class="text-muted"><%= review.user.username %> - <%= review.created_at.strftime("%d/%m/%Y") %></small></p>
+            </div>
+            <div>
+              <% if review.user == current_user %>
+                <%= link_to "Delete", book_review_path(@book, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+              <% end %>
+            </div>
+          </div>
+          <p class="card-text"><i class="fa-regular fa-star"></i><%= review.rating %></p>
+          <p class="card-text mt-2"><%= review.content %></p>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No reviews yet.</p>
+  <% end %>
+
+  <%= link_to "Add a Review", new_book_review_path(@book), class: "btn btn-primary mb-2", remote: true %>
+  <%= link_to "Back", book_path(@book), class: "btn btn-primary mb-2", remote: true %>
