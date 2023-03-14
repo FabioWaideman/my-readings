@@ -3,15 +3,23 @@
   <div class="col-md-7 me-3">
     <div class="card mb-3">
       <div class="row g-0">
-        <div class="col-md-4">
-          <%= cl_image_tag(current_user.avatar.key, transformation: [{ width: 200, height: 300, crop: :fit }]) %>
+        <div class="col-md-4 m-2">
+          <%= cl_image_tag current_user.avatar.key, height:'230', width:'230', class: "border rounded", style:'object-fit:cover' %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7 ms-2">
           <div class="card-body">
             <h4 class="card-title"><%= @user.username %></h4>
             <p class="card-text"><strong>About me:</strong></p>
             <p class="card-text"><%= @user.about %></p>
-            <p class="card-text"><strong>Books read:</strong> TO DO</p>
+            <p class="card-text"><strong>Books read:</strong>
+              <% book = [] %>
+              <% @user.bookmarks.each do |bookmark| %>
+                <% if bookmark["read"] %>
+                <% book << bookmark %>
+                <% end %>
+              <% end %>
+              <%= book.count %>
+            </p>
             <p class="card-text"><strong>Reviews:</strong> TO DO</p>
             <p class="card-text"><strong>Achievements:</strong> TO DO</p>
             <p class="card-text"><small class="text-muted">Registered: <%= @user.created_at.strftime("%d %b %y") %></small></p>
@@ -25,13 +33,42 @@
         <div class="card text-bg-light mb-3 me-1 flex-grow-1 col-md-5">
           <div class="card-header">Books Read</div>
           <div class="card-body">
-            <p class="card-text">TO DO</p>
+           <ul class="list-group">
+              <% @user.bookmarks.each do |bookmark| %>
+                <% if bookmark["read"] %>
+                  <% book = bookmark.book %>
+                  <li  class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <%= image_tag book.image_url,  width:'50', class: "me-2", alt: book.title %>
+                      <%=link_to book.title, book, class:"flex-fill" %>
+                      <%= link_to icon('fa-solid', 'check'), bookmark_path(bookmark), data: { turbo_method: :patch, turbo_confirm: 'Mark this book as unread?'}, class:"btn btn-success" %>
+                      <%= link_to icon('fa-solid', 'xmark'), bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Delete this book from the list?'}, class:"btn btn-danger" %>
+                    </div>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
           </div>
         </div>
+
         <div class="card text-bg-light mb-3 ms-1 flex-grow-1 col-md-5">
           <div class="card-header">Wishlist</div>
           <div class="card-body">
-            <p class="card-text">TO DO</p>
+            <ul class="list-group" data-controller="mark-as-read">
+              <% @user.bookmarks.each do |bookmark| %>
+                <% unless bookmark["read"] %>
+                  <% book = bookmark.book %>
+                  <li class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <%= image_tag book.image_url,  width:'50', class: "me-2", alt: book.title %>
+                      <%=link_to book.title, book, class:"flex-fill" %>
+                      <%= link_to icon('fa-solid', 'check'), bookmark_path(bookmark), data: { turbo_method: :patch, turbo_confirm: 'Mark this book as read?'}, class:"btn btn-success" %>
+                      <%= link_to icon('fa-solid', 'xmark'), bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Delete this book from the list?'}, class:"btn btn-danger" %>
+                    </div>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
           </div>
         </div>
       </div>
