@@ -4,7 +4,9 @@
     <div class="card mb-3">
       <div class="row g-0">
         <div class="col-md-4 m-2">
+          <% if current_user.avatar.key %>
           <%= cl_image_tag current_user.avatar.key, height:'230', width:'230', class: "border rounded", style:'object-fit:cover' %>
+          <% end %>
         </div>
         <div class="col-md-7 ms-2">
           <div class="card-body">
