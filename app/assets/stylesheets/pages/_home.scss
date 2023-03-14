@@ -1,1 +1,23 @@
 // Specific CSS for your home-page
+@import url('https://fonts.googleapis.com/css2?family=Lobster');
+
+#home-lettering {
+  font-family: 'Lobster', sans-serif;
+}
+
+#home-lettering h1 {
+  font-family: 'Lobster', sans-serif;
+  font-size: 6em !important;
+  margin-bottom: 10px;
+}
+#home-lettering p {
+  font-size: 1.2em;
+}
+
+.dropdown-divider {
+  height: 1px;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  background-color: #e9ecef;
+  border-top: 1px solid #e9ecef;
+}
