@@ -21,7 +21,7 @@
           </div>
           <div class="flex-column">
             <h3><i class="fa-regular fa-star"></i><%= @book.average_rating %><span class="fs-6">/5</span></h3>
-            <%= link_to "Add to My List", book_bookmarks_path(@book), data: { turbo_method: :post }, class:"btn btn-info" %>
+            <%= link_to "Add to My List", book_bookmarks_path(@book), data: { turbo_method: :post }, class:"btn btn-warning" %>
           </div>
         </div>
         <div class="book-description mt-3">
@@ -83,6 +83,6 @@
     <p>No reviews yet.</p>
   <% end %>
 
-  <%= link_to "Add a Review", new_book_review_path(@book), class: "btn btn-primary", remote: true %>
+  <%= link_to "Add a Review", new_book_review_path(@book), class: "btn btn-warning", remote: true %>
 
 </div>

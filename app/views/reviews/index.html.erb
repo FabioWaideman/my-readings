@@ -5,7 +5,7 @@
     <%= label_tag(:rating, "Filter by rating:") %>
     <%= select_tag(:rating, options_for_select([['All', ''], ['1.0', 1.0], ['2.0', 2.0], ['3.0', 3.0], ['4.0', 4.0], ['5.0', 5.0]], params[:rating]), class: "form-control") %>
   </div>
-  <%= submit_tag "Filter", class: "btn btn-primary my-2" %>
+  <%= submit_tag "Filter", class: "btn btn-warning btn-sm my-2" %>
 <% end %>
 
 <% if @reviews.any? %>
@@ -32,5 +32,5 @@
     <p>No reviews yet.</p>
   <% end %>
 
-  <%= link_to "Add a Review", new_book_review_path(@book), class: "btn btn-primary mb-2", remote: true %>
-  <%= link_to "Back", book_path(@book), class: "btn btn-primary mb-2", remote: true %>
+  <%= link_to "Add a Review", new_book_review_path(@book), class: "btn btn-warning mb-2", remote: true %>
+  <%= link_to "Back", book_path(@book), class: "btn btn-warning mb-2", remote: true %>

@@ -1,6 +1,6 @@
 <div id="navbar-container" class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
+    <%= link_to root_path,  class: "navbar-brand" do %>
       <%= image_tag "My_readings_claro.png" %>
     <% end %>
 
@@ -17,10 +17,10 @@
             class: "form-control me-1",
             placeholder: "Find a Book"
           %>
-          <%= submit_tag "Search", class: "btn btn-info" %>
+          <%= submit_tag "Search", class: "btn-warning btn" %>
           <% end %>
           <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+            <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item active">
             <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
@@ -30,7 +30,7 @@
               <%= cl_image_tag(current_user.avatar.key, transformation: [{ width: 30, height: 30, crop: :thumb, gravity: :face, radius: :max }], class: "avatar rounded-circle dropdown-toggle", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
             <% end %>
             <div class="dropdown-menu text-center dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Profile", "#", class: "dropdown-item" %>
+              <%= link_to "Profile", current_user, class: "dropdown-item" %>
               <div class="dropdown-divider my-2" style="width: 75%; margin: 0 auto;"></div>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
