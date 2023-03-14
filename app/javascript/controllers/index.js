@@ -4,11 +4,5 @@
 
 import { application } from "./application"
 
-import ControllerReviewController from "./controller_review_controller"
-application.register("controller-review", ControllerReviewController)
-
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
-
-import MarkAsReadController from "./mark_as_read_controller"
-application.register("mark-as-read", MarkAsReadController)

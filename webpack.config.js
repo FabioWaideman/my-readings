@@ -1,7 +1,7 @@
 const path    = require("path")
 const webpack = require("webpack")
 
-module.exports = {
+const config = {
   mode: "production",
   devtool: "source-map",
   entry: {
@@ -18,3 +18,4 @@ module.exports = {
     })
   ]
 }
+module.exports = config;
