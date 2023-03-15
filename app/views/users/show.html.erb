@@ -4,8 +4,10 @@
     <div class="card mb-3">
       <div class="row g-0">
         <div class="col-md-4 m-2">
-          <% if current_user.avatar.key %>
-          <%= cl_image_tag current_user.avatar.key, height:'230', width:'230', class: "border rounded", style:'object-fit:cover' %>
+          <% if @user.avatar.key %>
+            <%= cl_image_tag @user.avatar.key, height:'230', width:'230', class: "border rounded", style:'object-fit:cover' %>
+          <% else %>
+            <%= image_tag "avatar_placeholder", height:'230', width:'230', class: "border rounded", style:'object-fit:fit' %>
           <% end %>
         </div>
         <div class="col-md-7 ms-2">
@@ -25,6 +27,13 @@
             <p class="card-text"><strong>Reviews:</strong> TO DO</p>
             <p class="card-text"><strong>Achievements:</strong> TO DO</p>
             <p class="card-text"><small class="text-muted">Registered: <%= @user.created_at.strftime("%d %b %y") %></small></p>
+            <% if @user != current_user %>
+              <% unless current_user.friends.include?(@user) || current_user.inverse_friends.include?(@user)%>
+                <%= link_to "Add as a friend", user_friendships_path(@user),data: { turbo_method: :post, turbo_confirm: "Add #{@user.username} as a friend?"}, class:"btn btn-warning" %>
+              <% else %>
+                <%= link_to "Remove from friends list", user_friendship_path(@user),data: { turbo_method: :delete, turbo_confirm: "Remove #{@user.username} from friends list?"}, class:"btn btn-warning" %>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -42,9 +51,11 @@
                   <li  class="list-group-item">
                     <div class="d-flex justify-content-between align-items-center">
                       <%= image_tag book.image_url,  width:'50', class: "me-2", alt: book.title %>
-                      <%=link_to book.title, book, class:"flex-fill" %>
-                      <%= link_to icon('fa-solid', 'check'), bookmark_path(bookmark), data: { turbo_method: :patch, turbo_confirm: 'Mark this book as unread?'}, class:"btn btn-success" %>
-                      <%= link_to icon('fa-solid', 'xmark'), bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Delete this book from the list?'}, class:"btn btn-danger" %>
+                      <%=link_to book.title, book, class:"flex-fill text-decoration-none text-reset" %>
+                      <% if @user == current_user %>
+                        <%= link_to icon('fa-solid', 'check'), bookmark_path(bookmark), data: { turbo_method: :patch, turbo_confirm: 'Mark this book as unread?'}, class:"btn btn-success" %>
+                        <%= link_to icon('fa-solid', 'xmark'), bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Delete this book from the list?'}, class:"btn btn-danger" %>
+                      <% end %>
                     </div>
                   </li>
                 <% end %>
@@ -56,16 +67,18 @@
         <div class="card text-bg-light mb-3 ms-1 flex-grow-1 col-md-5">
           <div class="card-header">Wishlist</div>
           <div class="card-body">
-            <ul class="list-group" data-controller="mark-as-read">
+            <ul class="list-group">
               <% @user.bookmarks.each do |bookmark| %>
                 <% unless bookmark["read"] %>
                   <% book = bookmark.book %>
                   <li class="list-group-item">
                     <div class="d-flex justify-content-between align-items-center">
                       <%= image_tag book.image_url,  width:'50', class: "me-2", alt: book.title %>
-                      <%=link_to book.title, book, class:"flex-fill" %>
-                      <%= link_to icon('fa-solid', 'check'), bookmark_path(bookmark), data: { turbo_method: :patch, turbo_confirm: 'Mark this book as read?'}, class:"btn btn-success" %>
-                      <%= link_to icon('fa-solid', 'xmark'), bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Delete this book from the list?'}, class:"btn btn-danger" %>
+                      <%=link_to book.title, book, class:"flex-fill text-decoration-none text-reset" %>
+                      <% if @user == current_user %>
+                        <%= link_to icon('fa-solid', 'check'), bookmark_path(bookmark), data: { turbo_method: :patch, turbo_confirm: 'Mark this book as read?'}, class:"btn btn-success" %>
+                        <%= link_to icon('fa-solid', 'xmark'), bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Delete this book from the list?'}, class:"btn btn-danger" %>
+                      <% end %>
                     </div>
                   </li>
                 <% end %>
@@ -79,7 +92,7 @@
 
 
   <div class="col-md-4">
-      <div class="card text-bg-light mb-3 flex-grow-1">
+    <div class="card text-bg-light mb-3 flex-grow-1">
       <div class="card-header">Achievements</div>
       <div class="card-body">
         <p class="card-text">TO DO TO DO TO DO</p>
@@ -88,12 +101,38 @@
 
     <div class="card text-bg-light mb-3 flex-grow-1">
       <div class="card-header">Friends</div>
-      <div class="card-body">
-        <p class="card-text">TO DO TO DO TO DO TO DO TO DOTO DOTO DOTO DOTO DOTO DOTO DOTO DOTO DOTO DOTO DO</p>
+      <div class="card-group card-body">
+        <% @user.friends.each do |friend| %>
+          <div class="col-4">
+            <%= link_to friend, class:"text-decoration-none text-reset mb-2 mx-2 d-flex flex-column justify-content-center" do %>
+              <% if friend.avatar.key %>
+                <%= cl_image_tag friend.avatar.key, height:'80', width:'80', class: "border rounded mx-auto", style:'object-fit:cover' %>
+              <% else %>
+                <%= image_tag "avatar_placeholder", height:'80', width:'80', class: "border rounded mx-auto", style:'object-fit:fit' %>
+              <% end %>
+              <p class="text-center"><%= friend.username %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% @user.inverse_friends.each do |friend| %>
+          <div class="col-4">
+            <%= link_to friend, class:"text-decoration-none text-reset mb-2 mx-2 d-flex flex-column" do %>
+              <% if friend.avatar.key %>
+                <%= cl_image_tag friend.avatar.key, height:'50', width:'50', class: "border rounded mx-auto", style:'object-fit:cover' %>
+              <% else %>
+                <%= image_tag "avatar_placeholder", height:'50', width:'50', class: "border rounded mx-auto", style:'object-fit:fit' %>
+              <% end %>
+              <p class="text-center"><%= friend.username %></p>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
 
+    <% if @user == current_user %>
     <%= link_to "Edit Profile", edit_user_registration_path, class:"btn btn-warning" %>
+    <% end %>
   </div>
 
 </div>
