@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  include ActionView::RecordIdentifier # adds `dom_id`
+  
   def index
     @book = Book.find(params[:book_id])
     @reviews = policy_scope(@book.reviews)
@@ -21,7 +23,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     authorize @review
     if @review.save
-      redirect_to book_path(@book), notice: "Review was successfully created."
+      redirect_to book_path(@book), anchor: dom_id(@review), notice: "Review was successfully created."
     else
       render :new
     end
