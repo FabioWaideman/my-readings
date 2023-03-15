@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   end
 
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :friendships, only: [:create, :destroy]
+  end
   resources :bookmarks, only: [:destroy, :update]
 end

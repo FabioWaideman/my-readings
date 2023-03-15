@@ -63,10 +63,12 @@
         <div class="card-body">
 
           <div class="d-flex justify-content-between">
-            <div class="d-flex flex-row">
-              <%= cl_image_tag(review.user.avatar.key, transformation: [{ width: 30, height: 30, crop: :thumb, gravity: :face, radius: :max }], class: "avatar rounded-circle") %>
-              <p class="card-text mx-2"><small class="text-muted"><%= review.user.username %> - <%= review.created_at.strftime("%d/%m/%Y") %></small></p>
-            </div>
+            <%= link_to review.user, class:"text-decoration-none" do %>
+              <div class="d-flex flex-row">
+                <%= cl_image_tag(review.user.avatar.key, transformation: [{ width: 30, height: 30, crop: :thumb, gravity: :face, radius: :max }], class: "avatar rounded-circle") %>
+                <p class="card-text mx-2"><small class="text-muted"><%= review.user.username %> - <%= review.created_at.strftime("%d/%m/%Y") %></small></p>
+              </div>
+            <% end %>
             <div>
               <% if review.user == current_user %>
                 <%= link_to "Delete", book_review_path(@book, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
