@@ -27,6 +27,28 @@
         <div class="book-description mt-3">
           <h2>Description</h2>
           <p><%= @book.description %></p>
+        <%# Same author books %>
+        <div class="card text-bg-light mb-3">
+          <div class="card-header">Other books from <%= @book.author %>:</div>
+            <div class="card-body">
+              <% if @same_author_books.any? %>
+                <div class="d-flex flex-wrap">
+                  <% @same_author_books.each do |book| %>
+                    <div class="mb-3">
+                      <%= link_to book_path(book.id), class: "text-reset text-decoration-none" do %>
+                        <div class="card p-3 mx-3" style="width:150px; height: 100%">
+                          <%= image_tag book.image_url, class: "card-img-top img-fluid mx-auto", crop: :thumb, style:"height:auto; width:100px;" %>
+                          <small class="mt-2 text-wrap text-center"><%= book.title %></small>
+                        </div>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+              <% else %>
+                <p>No other books from this author were found.</p>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -40,19 +62,11 @@
         </div>
     </div>
   </div>
-      <%# Same author books %>
-      <div class="card text-bg-light mb-3">
-          <div class="card-header">Other books from <%= @book.author %></div>
-          <div class="card-body">
-            <p class="card-text">TO DO</p>
-          </div>
-        </div>
-    </div>
 </div>
 
 <div id="reviews" class="container mt-4" data-controller="reviews" data-reviews-book-value="<%= @book.title %>">
   <div class="d-flex align-items-end">
-    <h2>Reviews</h2>
+    <h2>Recent reviews</h2>
     <p class="mx-2"><%= link_to "View all", book_reviews_path(@book) %></p>
   </div>
 
