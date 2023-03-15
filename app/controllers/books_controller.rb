@@ -13,5 +13,6 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     authorize @book
     @review = Review.new
+    @same_author_books = Book.where(author: @book.author).where.not(id: @book.id)
   end
 end

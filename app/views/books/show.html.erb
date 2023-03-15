@@ -27,6 +27,28 @@
         <div class="book-description mt-3">
           <h2>Description</h2>
           <p><%= @book.description %></p>
+        <%# Same author books %>
+        <div class="card text-bg-light mb-3">
+          <div class="card-header">Other books from <%= @book.author %>:</div>
+            <div class="card-body">
+              <% if @same_author_books.any? %>
+                <div class="d-flex flex-wrap">
+                  <% @same_author_books.each do |book| %>
+                    <div class="mb-3">
+                      <%= link_to book_path(book.id), class: "text-reset text-decoration-none" do %>
+                        <div class="card p-3 mx-3" style="width:150px; height: 100%">
+                          <%= image_tag book.image_url, class: "card-img-top img-fluid mx-auto", crop: :thumb, style:"height:auto; width:100px;" %>
+                          <small class="mt-2 text-wrap text-center"><%= book.title %></small>
+                        </div>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+              <% else %>
+                <p>No other books from this author were found.</p>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -40,51 +62,40 @@
         </div>
     </div>
   </div>
-      <%# Same author books %>
-      <div class="card text-bg-light mb-3">
-          <div class="card-header">Other books from <%= @book.author %></div>
-          <div class="card-body">
-            <p class="card-text">TO DO</p>
-          </div>
-        </div>
-    </div>
 </div>
 
-<div id="reviews" class="container mt-4">
+<div id="reviews" class="container mt-4" data-controller="reviews" data-reviews-book-value="<%= @book.title %>">
   <div class="d-flex align-items-end">
-    <h2>Reviews</h2>
+    <h2>Recent reviews</h2>
     <p class="mx-2"><%= link_to "View all", book_reviews_path(@book) %></p>
   </div>
 
   <% if @book.reviews.any? %>
-    <% reviews = @book.reviews.shuffle.take(3) %>
+    <% reviews = @book.reviews.last(3).reverse! %>
     <% reviews.each do |review| %>
-      <div class="card mb-3">
-        <div class="card-body">
-
-          <div class="d-flex justify-content-between">
-            <%= link_to review.user, class:"text-decoration-none" do %>
+      <%= content_tag :div, id: dom_id(review) do %>
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
               <div class="d-flex flex-row">
                 <%= cl_image_tag(review.user.avatar.key, transformation: [{ width: 30, height: 30, crop: :thumb, gravity: :face, radius: :max }], class: "avatar rounded-circle") %>
                 <p class="card-text mx-2"><small class="text-muted"><%= review.user.username %> - <%= review.created_at.strftime("%d/%m/%Y") %></small></p>
               </div>
-            <% end %>
-            <div>
-              <% if review.user == current_user %>
-                <%= link_to "Delete", book_review_path(@book, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
-              <% end %>
+              <div>
+                <% if review.user == current_user %>
+                  <%= link_to "Delete", book_review_path(@book, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+                <% end %>
+              </div>
             </div>
+            <p class="card-text"><i class="fa-regular fa-star"></i><%= review.rating %></p>
+            <p class="card-text mt-2"><%= review.content %></p>
           </div>
-          <p class="card-text"><i class="fa-regular fa-star"></i><%= review.rating %></p>
-          <p class="card-text mt-2"><%= review.content %></p>
-
         </div>
-      </div>
+      <% end %>
     <% end %>
   <% else %>
     <p>No reviews yet.</p>
   <% end %>
 
-  <%= link_to "Add a Review", new_book_review_path(@book), class: "btn btn-warning", remote: true %>
-
+  <button class="btn btn-warning" data-action="click->reviews#create" data-reviews-book-value="<%= @book.title %>">Add a review</button>
 </div>
