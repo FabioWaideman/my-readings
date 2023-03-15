@@ -27,9 +27,9 @@
           </li>
           <li class="nav-item dropdown">
             <% if current_user.avatar.present? %>
-              <%= cl_image_tag(current_user.avatar.key, transformation: [{ width: 30, height: 30, crop: :thumb, gravity: :face, radius: :max }], class: "avatar rounded-circle dropdown-toggle", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+              <%= cl_image_tag(current_user.avatar.key, transformation: [{ width: 30, height: 30, crop: :thumb, gravity: :face, radius: :max }], class: "avatar border border-white border-2 rounded-circle dropdown-toggle", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
             <% else %>
-                <%= image_tag "avatar_placeholder", class: "avatar rounded-circle dropdown-toggle", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
+                <%= image_tag "avatar_placeholder", class: "avatar border border-white border-2 rounded-circle dropdown-toggle", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
             <% end %>
             <div class="dropdown-menu text-center dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Profile", current_user, class: "dropdown-item" %>
