@@ -15,5 +15,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :friendships, only: [:create, :destroy]
   end
-  resources :bookmarks, only: [:destroy, :update]
+
+  resources :bookmarks, only: [:destroy] do
+    post "mark_as_read", to: "bookmarks#mark_as_read"
+  end
 end

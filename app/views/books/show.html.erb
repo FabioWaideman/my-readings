@@ -21,7 +21,7 @@
           </div>
           <div class="flex-column">
             <h3><i class="fa-regular fa-star"></i><%= @book.average_rating %><span class="fs-6">/5</span></h3>
-            <%= link_to "Add to My List", book_bookmarks_path(@book), data: { turbo_method: :post }, class:"btn btn-warning" %>
+            <%= link_to "Add to My List", book_bookmarks_path(@book), data: { action: "click->notifications#pop_up", turbo_method: :post, message: 'Book added to your list!' }, class:"mybutton" %>
           </div>
         </div>
         <div class="book-description mt-3">
@@ -64,7 +64,7 @@
   </div>
 </div>
 
-<div id="reviews" class="container mt-4" data-controller="reviews" data-reviews-book-value="<%= @book.title %>">
+<div id="reviews" class="container mt-4" data-controller="reviews" data-reviews-book-value="<%= @book.id %>">
   <div class="d-flex align-items-end">
     <h2>Recent reviews</h2>
     <p class="mx-2"><%= link_to "View all", book_reviews_path(@book) %></p>
@@ -77,13 +77,15 @@
         <div class="card mb-3">
           <div class="card-body">
             <div class="d-flex justify-content-between">
-              <div class="d-flex flex-row">
-                <%= cl_image_tag(review.user.avatar.key, transformation: [{ width: 30, height: 30, crop: :thumb, gravity: :face, radius: :max }], class: "avatar rounded-circle") %>
-                <p class="card-text mx-2"><small class="text-muted"><%= review.user.username %> - <%= review.created_at.strftime("%d/%m/%Y") %></small></p>
-              </div>
+              <%= link_to review.user, class:"text-decoration-none" do %>
+                <div class="d-flex flex-row">
+                    <%= cl_image_tag(review.user.avatar.key, transformation: [{ width: 30, height: 30, crop: :thumb, gravity: :face, radius: :max }], class: "avatar rounded-circle") %>
+                    <p class="card-text mx-2"><small class="text-muted"><%= review.user.username %> - <%= review.created_at.strftime("%d/%m/%Y") %></small></p>
+                </div>
+              <% end %>
               <div>
                 <% if review.user == current_user %>
-                  <%= link_to "Delete", book_review_path(@book, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+                  <%= link_to "Delete", book_review_path(@book, review), data: { action: "click->reviews#confirm", turbo_method: :delete, turbo_confirm: 'Mark this book as read?', message:"review" }, class: "delete-button" %>
                 <% end %>
               </div>
             </div>
@@ -97,5 +99,5 @@
     <p>No reviews yet.</p>
   <% end %>
 
-  <button class="btn btn-warning" data-action="click->reviews#create" data-reviews-book-value="<%= @book.title %>">Add a review</button>
+  <button class="mybutton" data-action="click->reviews#create">Add a review</button>
 </div>
