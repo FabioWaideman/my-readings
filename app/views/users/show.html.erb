@@ -53,7 +53,7 @@
                       <%= image_tag book.image_url,  width:'50', class: "me-2", alt: book.title %>
                       <%=link_to book.title, book, class:"flex-fill text-decoration-none text-reset" %>
                       <% if @user == current_user %>
-                        <%= link_to icon('fa-solid', 'check'), bookmark_path(bookmark), data: { turbo_method: :patch, turbo_confirm: 'Mark this book as unread?'}, class:"btn btn-success" %>
+                        <%= link_to icon('fa-solid', 'check'), bookmark_path(bookmark), data: { turbo_method: :patch, turbo_confirm: 'Mark this book as unread?'}, class:"btn btn-success mx-1" %>
                         <%= link_to icon('fa-solid', 'xmark'), bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Delete this book from the list?'}, class:"btn btn-danger" %>
                       <% end %>
                     </div>
@@ -76,7 +76,7 @@
                       <%= image_tag book.image_url,  width:'50', class: "me-2", alt: book.title %>
                       <%=link_to book.title, book, class:"flex-fill text-decoration-none text-reset" %>
                       <% if @user == current_user %>
-                        <%= link_to icon('fa-solid', 'check'), bookmark_path(bookmark), data: { turbo_method: :patch, turbo_confirm: 'Mark this book as read?'}, class:"btn btn-success" %>
+                        <%= link_to icon('fa-solid', 'check'), bookmark_path(bookmark), data: { turbo_method: :patch, turbo_confirm: 'Mark this book as read?'}, class:"btn btn-success mx-1" %>
                         <%= link_to icon('fa-solid', 'xmark'), bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Delete this book from the list?'}, class:"btn btn-danger" %>
                       <% end %>
                     </div>
