@@ -42,9 +42,10 @@
   transition: 0.3s;
 }
 .mybutton:hover {
+  transition: 0.3s;
 	background:linear-gradient(to bottom, #ccc2a6 5%, #E5BA73 100%);
 	background-color:#E5BA73;
-  transition: 0.3s;
+  color: #505739;
 }
 .mybutton:active {
 	position:relative;
@@ -74,6 +75,7 @@
   transition:0.3s;
   box-shadow:inset 0px 34px 0px -15px #a3230f;
 	background-color:#9b2414;
+  color: #ffffff;
 }
 .delete-button:active {
 	position:relative;

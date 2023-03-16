@@ -19,7 +19,7 @@
             </div>
             <div>
               <% if review.user == current_user %>
-                <%= link_to "Delete", book_review_path(@book, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+                <%= link_to "Delete", book_review_path(@book, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete-button" %>
               <% end %>
             </div>
           </div>
@@ -32,5 +32,5 @@
     <p>No reviews yet.</p>
   <% end %>
 
-  <%= link_to "Add a Review", new_book_review_path(@book), class: "mybutton text-reset text-decoration-none mb-2", remote: true %>
-  <%= link_to "Back", book_path(@book), class: "mybutton text-reset text-decoration-none mb-2", remote: true %>
+  <%= link_to "Add a Review", new_book_review_path(@book), class: "mybutton mb-2", remote: true %>
+  <%= link_to "Back", book_path(@book), class: "mybutton mb-2", remote: true %>
