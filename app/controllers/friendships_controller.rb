@@ -3,7 +3,7 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.new(user: current_user, friend: User.find(params[:user_id]))
     authorize @friendship
     @friendship.save
-    redirect_to current_user
+    redirect_to current_user, status: :see_other
   end
 
   def destroy
@@ -15,6 +15,6 @@ class FriendshipsController < ApplicationController
     end
     authorize @friendship
     @friendship.destroy
-    redirect_to current_user
+    redirect_to current_user, status: :see_other
   end
 end
