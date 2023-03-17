@@ -69,19 +69,26 @@ export default class extends Controller {
       text: "You won't be able to revert this!",
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#ef8535',
-      cancelButtonColor: '#d33',
+      buttonsStyling: false,
+      confirmButtonText: 'Yes, delete it!',
+      customClass: {
+        confirmButton: 'mybutton me-1',
+        cancelButton: 'cancel-button ms-1'
+      },
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       let token = this.getMetaValue("csrf-token");
         if (result.isConfirmed) {
         fetch(url, {method: link.dataset.turboMethod, headers:{"X-CSRF-Token": token}})
           .then(()=>{
-            Swal.fire(
-              'Deleted!',
-              message,
-              'success'
-            )
+            Swal.fire({
+              title: 'Deleted!',
+              text: message,
+              icon: 'success',
+              customClass: {
+                confirmButton: 'mybutton me-1'
+              }
+            })
             .then((result)=>{if(result.isConfirmed){location.reload()}})
           })
       }

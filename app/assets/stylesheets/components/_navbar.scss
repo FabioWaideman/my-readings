@@ -26,30 +26,30 @@
 }
 
 .mybutton {
-	background: linear-gradient(to bottom, #eae0c2 5%, #E5BA73 100%);
-  background-color: #E5BA73;
-  border-radius: 30px;
-  border: 1px solid #a8a190;
-  display: inline-block;
-  cursor: pointer;
-  color: #505739;
-  font-family: Arial;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 8px 17px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #ffffff;
-  transition: 0.3s;
+	background: linear-gradient(to bottom, #eae0c2 5%, #E5BA73 100%) !important;
+  background-color: #E5BA73 !important;
+  border-radius: 30px !important;
+  border: 1px solid #a8a190 !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+  color: #505739 !important;
+  font-family: Arial !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  padding: 8px 17px !important;
+  text-decoration: none !important;
+  text-shadow: 0px 1px 0px #ffffff !important;
+  transition: 0.3s !important;
 }
 .mybutton:hover {
   transition: 0.3s;
-	background:linear-gradient(to bottom, #ccc2a6 5%, #E5BA73 100%);
-	background-color:#E5BA73;
-  color: #505739;
+	background:linear-gradient(to bottom, #ccc2a6 5%, #E5BA73 100%) !important;
+	background-color:#E5BA73 !important;
+  color: #505739 !important;
 }
 .mybutton:active {
-	position:relative;
-	top:1px;
+	position:relative !important;
+	top:1px !important;
 }
 
 .search-input::placeholder {
@@ -57,27 +57,103 @@
 }
 
 .delete-button {
-	box-shadow: inset 0px 34px 0px -15px #c92c14;
-  background-color: #bf260f;
-  border-radius: 19px;
+	box-shadow: inset 0px 34px 0px -15px #c92c14 !important;
+  background-color: #bf260f !important;
+  border-radius: 19px !important;
   /* border: 1px solid #241d13; */
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: Arial;
-  font-size: 14px;
-  padding: 2px 19px;
-  text-decoration: none;
-  text-shadow: 0px -1px 0px #7a2a1d;
-  transition: 0.3s;
+  display: inline-block !important;
+  cursor: pointer !important;
+  color: #ffffff !important;
+  font-family: Arial !important;
+  font-size: 14px !important;
+  padding: 2px 19px !important;
+  text-decoration: none !important;
+  text-shadow: 0px -1px 0px #7a2a1d !important;
+  transition: 0.3s !important;
 }
 .delete-button:hover {
   transition:0.3s;
-  box-shadow:inset 0px 34px 0px -15px #a3230f;
-	background-color:#9b2414;
-  color: #ffffff;
+  box-shadow:inset 0px 34px 0px -15px #a3230f !important;
+	background-color:#9b2414 !important;
+  color: #ffffff !important;
 }
 .delete-button:active {
-	position:relative;
-	top:1px;
+	position:relative !important;
+	top:1px !important;
+}
+
+.cancel-button {
+  box-shadow: inset 0px 34px 0px -15px #c92c14 !important;
+  background-color: #bf260f !important;
+  border-radius: 30px !important;
+  border: 1px solid #9d7070 !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+  color: #ffffff !important;
+  font-family: Arial !important;
+  font-size: 12px !important;
+  padding: 8px 17px !important;
+  text-decoration: none !important;
+  text-shadow: 0px -1px 0px #7a2a1d !important;
+  transition: 0.3s !important;
+}
+.cancel-button:hover {
+  transition:0.3s;
+  box-shadow:inset 0px 34px 0px -15px #a3230f !important;
+	background-color:#9b2414 !important;
+  color: #ffffff !important;
+}
+.cancel-button:active {
+	position:relative !important;
+	top:1px !important;
+}
+.mybutton-sm {
+	background: linear-gradient(to bottom, #eae0c2 5%, #E5BA73 100%) !important;
+  background-color: #E5BA73 !important;
+  border-radius: 30px !important;
+  border: 1px solid #a8a190 !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+  color: #505739 !important;
+  font-family: Arial !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  padding: 3px 13px !important;
+  text-decoration: none !important;
+  text-shadow: 0px 1px 0px #ffffff !important;
+  transition: 0.3s !important;
+  margin-left: 5px;
+}
+.mybutton-sm:hover {
+  transition: 0.3s;
+	background:linear-gradient(to bottom, #ccc2a6 5%, #E5BA73 100%) !important;
+	background-color:#E5BA73 !important;
+  color: #505739 !important;
+}
+.mybutton-sm:active {
+	position:relative !important;
+	top:1px !important;
+}
+
+.cancel-button-sm {
+  box-shadow: inset 0px 34px 0px -15px #c92c14 !important;
+  background-color: #bf260f !important;
+  border-radius: 30px !important;
+  border: 1px solid #9d7070 !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+  color: #ffffff !important;
+  font-family: Arial !important;
+  font-size: 12px !important;
+  padding: 3px 14px !important;
+  text-decoration: none !important;
+  text-shadow: 0px 1px 0px #0c0b0b !important;
+  transition: 0.3s !important;
+  margin-left: 5px;
+}
+.cancel-button-sm:hover {
+  transition:0.3s;
+  box-shadow:inset 0px 34px 0px -15px #a3230f !important;
+	background-color:#9b2414 !important;
+  color: #ffffff !important;
 }
