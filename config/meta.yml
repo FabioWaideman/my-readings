@@ -1,0 +1,6 @@
+# config/meta.yml
+
+meta_product_name: "My Readings"
+meta_title: "My Readings - Where imagination has no limits."
+meta_description: "The book community for book lovers."
+meta_image: "My_readings_banner.png" # should exist in `app/assets/images/`
