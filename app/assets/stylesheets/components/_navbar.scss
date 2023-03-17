@@ -157,3 +157,25 @@
 	background-color:#9b2414 !important;
   color: #ffffff !important;
 }
+
+.mybutton-delete {
+  background: linear-gradient(to bottom, #9b2414 100%) !important;
+  background-color: #a3230f !important;
+  border-radius: 30px !important;
+  border: 1px solid #a8a190 !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+  color: #9d7070 !important;
+  font-family: Arial !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  padding: 8px 17px !important;
+  text-decoration: none !important;
+  transition: 0.3s !important;
+  width: 132px;
+}
+
+.img-fluid{
+  background-size: cover;
+  object-fit: cover;
+}
