@@ -1,8 +1,8 @@
 class ReviewsController < ApplicationController
   include ActionView::RecordIdentifier # adds `dom_id`
-  
+  before_action :set_book, only: [:create, :destroy, :new, :index]
+
   def index
-    @book = Book.find(params[:book_id])
     @reviews = policy_scope(@book.reviews)
     authorize @reviews
     if params[:rating].present?
@@ -11,13 +11,11 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @book = Book.find(params[:book_id])
     @review = Review.new
     authorize @review
   end
 
   def create
-    @book = Book.find(params[:book_id])
     @review = Review.new(review_params)
     @review.book = @book
     @review.user = current_user
@@ -30,7 +28,6 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:book_id])
     @review = Review.find(params[:id])
     @review.book = @book
     @review.user = current_user
@@ -43,5 +40,9 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:content, :rating)
+  end
+
+  def set_book
+    @book = Book.find(params[:book_id])
   end
 end
