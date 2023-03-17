@@ -56,8 +56,19 @@
     <div class="col-3">
       <div class="card text-bg-light mb-3">
           <div class="card-header">Readers</div>
-          <div class="card-body">
-            <p class="card-text">TO DO</p>
+          <div class="card-group card-body">
+            <% @book.users.each do |reader| %>
+              <div class="col-6">
+                <%= link_to reader, class:"text-decoration-none text-reset mb-2 mx-2 d-flex flex-column justify-content-center" do %>
+                  <% if reader.avatar.key %>
+                    <%= cl_image_tag reader.avatar.key, height:'60', width:'60', class: "border rounded mx-auto", style:'object-fit:cover' %>
+                  <% else %>
+                    <%= image_tag "avatar_placeholder", height:'60', width:'60', class: "border rounded mx-auto", style:'object-fit:fit' %>
+                  <% end %>
+                  <p class="text-center"><%= reader.username %></p>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         </div>
     </div>
