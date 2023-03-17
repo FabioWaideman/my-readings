@@ -3,7 +3,10 @@
 <head>
   <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
+  @import url('https://fonts.googleapis.com/css2?family=Lobster');
   .rails-default-error-page {
     background-color: #EFEFEF;
     color: #2E2F30;
@@ -51,17 +54,38 @@
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
+
+  #home-lettering {
+    font-family: 'Lobster', sans-serif;
+  }
+
+  #home-lettering h1 {
+    font-family: 'Lobster', sans-serif;
+    font-size: 6em !important;
+    margin-bottom: 10px;
+  }
+  #home-lettering p {
+    font-size: 1.2em;
+  }
   </style>
 </head>
 
 <body class="rails-default-error-page">
   <!-- This file lives in public/404.html -->
-  <div class="dialog">
+  <!-- <div class="dialog">
     <div>
       <h1>The page you were looking for doesn't exist.</h1>
       <p>You may have mistyped the address or the page may have moved.</p>
     </div>
     <p>If you are the application owner check the logs for more information.</p>
+  </div> -->
+  <div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div id="home-lettering" class="container d-flex flex-column justify-content-center align-items-center my-auto" style="margin-top: 50%;">
+      <h1 class="text-center">my readings</h1>
+      <hr class="w-25">
+      <h2 class="mx-4 text-center">404 error</h2>
+      <h4 class="mx-4 text-center">Sorry, the page you were looking for doesn't exist.</h4>
+    </div>
   </div>
 </body>
 </html>
