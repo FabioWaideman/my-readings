@@ -24,7 +24,7 @@
               <% end %>
               <%= book.count %>
             </p>
-            <p class="card-text"><strong>Reviews:</strong><%= @user.reviews.count %></p>
+            <p class="card-text"><strong>Reviews: </strong><%= @user.reviews.count %></p>
             <p class="card-text"><small class="text-muted">Registered: <%= @user.created_at.strftime("%d %b %y") %></small></p>
             <% if @user != current_user %>
               <% unless current_user.friends.include?(@user) || current_user.inverse_friends.include?(@user)%>
@@ -93,7 +93,7 @@
   <div class="col-md-4">
 
      <div class="card text-bg-light mb-3 flex-grow-1">
-      <div class="card-header">Friends</div>
+      <div class="card-header">Friends <span>(<%= @user.friends.count + @user.inverse_friends.count %>)</span></div>
       <div class="card-group card-body">
         <% @user.friends.each do |friend| %>
           <div class="col-4">

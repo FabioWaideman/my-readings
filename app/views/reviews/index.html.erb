@@ -1,20 +1,25 @@
-<h1>Reviews for <%= @book.title %></h1>
+<div class="container" data-controller="reviews" data-reviews-book-value="<%= @book.id %>">
+  <h1>Reviews for <%= @book.title %></h1>
 
-<%= form_with(url: book_reviews_path(@book), method: "get") do %>
-  <div class="form-group">
-    <%= label_tag(:rating, "Filter by rating:") %>
-    <%= select_tag(:rating, options_for_select([['All', ''], ['1.0', 1.0], ['2.0', 2.0], ['3.0', 3.0], ['4.0', 4.0], ['5.0', 5.0]], params[:rating]), class: "form-control") %>
-  </div>
-  <%= submit_tag "Filter", class: "mybutton my-2" %>
-<% end %>
+  <%= form_with(url: book_reviews_path(@book), method: "get") do %>
+    <div class="form-group">
+      <%= label_tag(:rating, "Filter by rating:") %>
+      <%= select_tag(:rating, options_for_select([['All', ''], ['1.0', 1.0], ['2.0', 2.0], ['3.0', 3.0], ['4.0', 4.0], ['5.0', 5.0]], params[:rating]), class: "form-control") %>
+    </div>
+    <%= submit_tag "Filter", class: "mybutton my-2" %>
+  <% end %>
 
-<% if @reviews.any? %>
+  <% if @reviews.any? %>
     <% @reviews.each do |review| %>
       <div class="card mb-3">
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <div class="d-flex flex-row">
-              <%= cl_image_tag(review.user.avatar.key, transformation: [{ width: 30, height: 30, crop: :thumb, gravity: :face, radius: :max }], class: "avatar rounded-circle") %>
+              <% if review.user.avatar.key %>
+                <%= cl_image_tag(review.user.avatar.key, transformation: [{ width: 30, height: 30, crop: :thumb, gravity: :face, radius: :max }], class: "avatar rounded-circle") %>
+              <% else %>
+                <%= image_tag "avatar_placeholder", class: "avatar rounded-circle" %>
+              <% end %>
               <p class="card-text mx-2"><small class="text-muted"><%= review.user.username %> - <%= review.created_at.strftime("%d/%m/%Y") %></small></p>
             </div>
             <div>
@@ -32,5 +37,6 @@
     <p>No reviews yet.</p>
   <% end %>
 
-  <%= link_to "Add a Review", new_book_review_path(@book), class: "mybutton mb-2", remote: true %>
+  <button class="mybutton" data-action="click->reviews#create">Add a review</button>
   <%= link_to "Back", book_path(@book), class: "mybutton mb-2", remote: true %>
+</div>
