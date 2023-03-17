@@ -21,7 +21,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     authorize @review
     if @review.save
-      redirect_to book_path(@book), anchor: dom_id(@review), notice: "Review was successfully created."
+      redirect_to book_path(@book), anchor: dom_id(@review)
     else
       render :new
     end
@@ -33,7 +33,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     authorize @review
     @review.destroy
-    redirect_to book_path(@book), notice: 'Review was successfully deleted.'
+    redirect_to book_path(@book)
   end
 
   private

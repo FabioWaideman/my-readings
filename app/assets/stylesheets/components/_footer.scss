@@ -9,3 +9,8 @@ footer{
 .github_link {
   color: #C58940
 }
+
+.custom-tooltip {
+  --bs-tooltip-bg: #d6a76d !important;
+  --bs-tooltip-color: #1f1509 !important;
+}

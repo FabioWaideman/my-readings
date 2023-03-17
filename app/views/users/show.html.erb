@@ -52,8 +52,8 @@
                       <%= image_tag book.image_url,  width:'50', class: "me-2", alt: book.title %>
                       <%=link_to book.title, book, class:"flex-fill text-decoration-none text-reset" %>
                       <% if @user == current_user %>
-                        <%= link_to icon('fa-solid', 'check'), bookmark_mark_as_read_path(bookmark), data: {  action: "click->notifications#pop_up", turbo_method: :post, message: 'Book marked as unread!'}, class:"mybutton-sm", title: "Mark as Unread" %>
-                        <%= link_to icon('fa-solid', 'xmark'), bookmark_path(bookmark), data: { action: "click->notifications#confirm", turbo_method: :delete, turbo_confirm: 'Delete this book from the list?'}, class:"cancel-button-sm", title: "Delete" %>
+                        <%= link_to icon('fa-solid', 'check'), bookmark_mark_as_read_path(bookmark), data: {  action: "click->notifications#pop_up", turbo_method: :post, message: 'Book marked as unread!', controller:"tooltip", bs_toggle:"tooltip", bs_placement:"top", bs_custom_class:"custom-tooltip"}, class:"mybutton-sm", title: "Mark as Unread" %>
+                        <%= link_to icon('fa-solid', 'xmark'), bookmark_path(bookmark), data: { action: "click->notifications#confirm", turbo_method: :delete, turbo_confirm: 'Delete this book from the list?', controller:"tooltip", bs_toggle:"tooltip", bs_placement:"top", bs_custom_class:"custom-tooltip"}, class:"cancel-button-sm", title: "Delete" %>
                       <% end %>
                     </div>
                   </li>
@@ -75,8 +75,8 @@
                       <%= image_tag book.image_url,  width:'50', class: "me-2", alt: book.title %>
                       <%=link_to book.title, book, class:"flex-fill text-decoration-none text-reset" %>
                       <% if @user == current_user %>
-                        <%= link_to icon('fa-solid', 'check'), bookmark_mark_as_read_path(bookmark), data: { action: "click->notifications#pop_up", turbo_method: :post, message: 'Book marked as read!'}, class:"mybutton-sm", title: "Mark as Read"  %>
-                        <%= link_to icon('fa-solid', 'xmark'), bookmark_path(bookmark), data: { action: "click->notifications#confirm", turbo_method: :delete, turbo_confirm: 'Delete this book from the list?'}, class:"cancel-button-sm", title: "Delete"  %>
+                        <%= link_to icon('fa-solid', 'check'), bookmark_mark_as_read_path(bookmark), data: { action: "click->notifications#pop_up", turbo_method: :post, message: 'Book marked as read!', controller:"tooltip", bs_toggle:"tooltip", bs_placement:"top", bs_custom_class:"custom-tooltip"}, class:"mybutton-sm", title: "Mark as Read"  %>
+                        <%= link_to icon('fa-solid', 'xmark'), bookmark_path(bookmark), data: { action: "click->notifications#confirm", turbo_method: :delete, turbo_confirm: 'Delete this book from the list?', controller:"tooltip", bs_toggle:"tooltip", bs_placement:"top", bs_custom_class:"custom-tooltip"}, class:"cancel-button-sm", title: "Delete"  %>
                       <% end %>
                     </div>
                   </li>

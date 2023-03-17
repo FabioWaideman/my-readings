@@ -12,3 +12,6 @@ application.register("notifications", NotificationsController)
 
 import ReviewsController from "./reviews_controller"
 application.register("reviews", ReviewsController)
+
+import TooltipController from "./tooltip_controller"
+application.register("tooltip", TooltipController)
