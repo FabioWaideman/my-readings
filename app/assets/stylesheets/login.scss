@@ -6,6 +6,8 @@
     width: auto;
     height: 100%;
     position: relative;
+    background-size: cover;
+    object-fit: cover !important;
   }
 
   .card-img-top::before {
