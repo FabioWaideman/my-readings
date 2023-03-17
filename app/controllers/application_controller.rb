@@ -20,12 +20,13 @@ class ApplicationController < ActionController::Base
     flash[:notice] = "Please, create o policy for this route!"
   end
 
-  def user_not_authorized
+   def user_not_authorized
     flash[:alert] = "You're NOT authorized to perform this action!"
     redirect_to root_path
   end
 
   def skip_pundit?
-    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+    devise_controller? ||
+    params[:controller] =~ /(^(rails_)?admin)|(^pages$)|(users)/
   end
 end
