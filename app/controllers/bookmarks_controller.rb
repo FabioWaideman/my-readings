@@ -4,6 +4,7 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.new(user: current_user, book: @book)
     authorize @bookmark
     @bookmark.save
+    sleep 2
     redirect_to current_user
   end
 
@@ -11,11 +12,11 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.find(params[:id])
     authorize @bookmark
     @bookmark.destroy
-    redirect_to current_user
+    redirect_to current_user, status: :see_other
   end
 
-  def update
-    @bookmark = Bookmark.find(params[:id])
+  def mark_as_read
+    @bookmark = Bookmark.find(params[:bookmark_id])
     authorize @bookmark
     if @bookmark["read"] == true
       @bookmark["read"] = false
@@ -23,6 +24,7 @@ class BookmarksController < ApplicationController
       @bookmark["read"] = true
     end
     @bookmark.save
-    redirect_to current_user
+    sleep 2
+    redirect_to current_user, status: :see_other
   end
 end

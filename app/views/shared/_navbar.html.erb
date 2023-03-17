@@ -1,8 +1,11 @@
 <div id="navbar-container" class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to root_path,  class: "navbar-brand" do %>
-      <%= image_tag "My_readings_claro.png" %>
-    <% end %>
+    <div id="logo-div" class="d-flex align-items-center">
+      <%= link_to root_path,  class: "navbar-brand" do %>
+        <%= image_tag "My_readings_claro.png" %>
+      <% end %>
+      <h4>my readings</h4>
+    </div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -14,13 +17,13 @@
           <%= form_with url: books_path, method: :get, class: "d-flex" do %>
           <%= text_field_tag :query,
             params[:query],
-            class: "form-control me-1",
-            placeholder: "Find a Book"
+            class: "form-control me-1 rounded-pill search-input",
+            placeholder: " Find a book"
           %>
-          <%= submit_tag "Search", class: "btn-warning btn" %>
+          <%= submit_tag "Search", class: "mybutton mr-3" %>
           <% end %>
           <li class="nav-item active">
-            <%= link_to "Home", root_path, class: "nav-link" %>
+            <%= link_to "Home", root_path, class: "nav-link ml-2" %>
           </li>
           <li class="nav-item active">
             <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
