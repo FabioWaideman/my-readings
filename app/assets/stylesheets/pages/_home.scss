@@ -4,14 +4,18 @@
   margin-bottom: 50px !important;
 }
 
-
 .bg-image-home {
+  background-image:
+  linear-gradient(to bottom, rgba(98, 98, 98, 0.52), rgba(40, 40, 40, 0.73)),
+  url('bookshelf.jpg');
   position: relative;
   width: 100%;
-  height: 80vh;
-  background-color: #EFB23D;
+  height: 100%;
+  background-color: #ef9f3d;
   background-size: cover;
   background-position: center;
+  padding: 90px;
+  border-radius: 30px;
 }
 
 .bg-image-home::before {
@@ -19,11 +23,23 @@
   position: absolute;
 }
 
-#home-lettering {
-  font-family: 'Lobster', sans-serif;
-  color: brown;
+.landing-div {
+  height: 70%;
+  margin: 0 auto;
+  // opacity: 0.8;
+  border-radius: 30px;
+  box-shadow: 1px 1px 3px #ffffff;
+  background-color: rgba(255, 255, 255, 0.798);
 }
 
+#home-lettering {
+  font-family: 'Lobster', sans-serif;
+  color: #946832
+}
+#home-lettering h4 {
+  font-family: 'Lobster', sans-serif;
+  margin-bottom: 0px;
+}
 #home-lettering h1 {
   font-family: 'Lobster', sans-serif;
   font-size: 6em !important;
@@ -31,17 +47,14 @@
 }
 #home-lettering p {
   font-size: 1.2em;
-  color: brown;
+  color: #a67437
 }
-
-
 
 .card-glass .card-body {
   font-size: 1.3em;
   background-position: center;
   padding: 25px;
   border-radius: 50px;
-
 }
 .btn {
   display: block; /* Isso faz com que o botão ocupe a largura total da div pai */

@@ -1,24 +1,21 @@
-<section class="jumbotron jumbotron-fluid bg-image-home">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-12">
-        <div id="home-lettering" class="container d-flex flex-column justify-content-center align-items-center my-auto">
-          <h1 class="text-center">My readings</h1>
-          <hr class="w-25">
-          <p class="mx-3 text-center">Where imagination has no limits!</p>
-          <div class="card-glass my-5">
-            <div class="card-body">
-              <p class="card-text">Hello welcome!</p>
-                  </p> We are a complete platform that offers a social experience for those who are passionate about books,
-                  allowing users to interact,
-                  share your readings done and those that are on your list of future readings, where you can discover new books, authors, new adventures and other worlds!
-                  Come be part of My readings!.</p>
-                  </p>Sign up and be part of our community.</p>
-                  <a href="users/sign_up" class="mybutton">Sign Up!</a>
-                </div>
-          </div>
+<div class="bg-image-home">
+  <div class="landing-div row justify-content-center align-items-center">
+    <div id="home-lettering" class="container d-flex flex-column justify-content-center align-items-center mt-4">
+      <h4 class="card-text">Welcome to</h4>
+      <h1 class="text-center">my readings</h1>
+      <hr class="w-25">
+      <p class="mx-3 text-center">Where imagination has no limits</p>
+      <div class="card-glass my-5 d-flex flex-column justify-content-center align-items-center my-auto">
+        <div class="card-body w-75 d-flex flex-column justify-content-center align-items-center my-auto">
+          <p> We are a complete platform that offers a social experience for those who are passionate about books,
+          allowing users to interact,
+          share your readings done and those that are on your list of future readings. A place where you can discover new books, authors, new adventures and other worlds!
+          Come be part of My readings!.</p>
+          <p>Sign up and be part of our community.</p>
+          <%= link_to "Login", new_user_session_path, class:"mybutton" %>
+          <%= link_to "Sign up", new_user_registration_path, class:"mybutton mt-3" %>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
