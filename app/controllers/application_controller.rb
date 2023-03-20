@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::PolicyScopingNotPerformedError, with: :unpermitted_policy
 
   rescue_from ActionController::Redirecting::UnsafeRedirectError do
-    redirect_to current_user
+    redirect_to current_user, allow_other_host: true
   end
 
   private
