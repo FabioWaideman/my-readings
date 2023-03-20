@@ -6,7 +6,7 @@ class FriendshipsController < ApplicationController
     authorize @friendship
     @friendship.save
     sleep 2
-    redirect_to @user
+    redirect_to @user, status: :see_other
   end
 
   def destroy
