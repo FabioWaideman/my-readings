@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from Pundit::PolicyScopingNotPerformedError, with: :unpermitted_policy
 
+  rescue_from ActionController::Redirecting::UnsafeRedirectError do
+    redirect_to current_user
+  end
+
   private
 
   def configure_permitted_parameters
