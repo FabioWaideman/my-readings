@@ -112,9 +112,9 @@
           <div class="col-4">
             <%= link_to friend, class:"text-decoration-none text-reset mb-2 mx-2 d-flex flex-column" do %>
               <% if friend.avatar.key %>
-                <%= cl_image_tag friend.avatar.key, height:'50', width:'50', class: "border rounded mx-auto", style:'object-fit:cover' %>
+                <%= cl_image_tag friend.avatar.key, height:'80', width:'80', class: "border rounded mx-auto", style:'object-fit:cover' %>
               <% else %>
-                <%= image_tag "avatar_placeholder", height:'50', width:'50', class: "border rounded mx-auto", style:'object-fit:fit' %>
+                <%= image_tag "avatar_placeholder", height:'80', width:'80', class: "border rounded mx-auto", style:'object-fit:fit' %>
               <% end %>
               <p class="text-center"><%= friend.username %></p>
             <% end %>
