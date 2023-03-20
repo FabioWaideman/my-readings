@@ -5,14 +5,20 @@ class BookmarksController < ApplicationController
     authorize @bookmark
     @bookmark.save
     sleep 2
-    redirect_to current_user
+    respond_to do |format|
+      format.html
+      format.json { head => :no_content}
+    end
   end
 
   def destroy
     @bookmark = Bookmark.find(params[:id])
     authorize @bookmark
     @bookmark.destroy
-    redirect_to current_user, status: :see_other
+    respond_to do |format|
+      format.html
+      format.json { head => :no_content}
+    end
   end
 
   def mark_as_read
@@ -25,6 +31,9 @@ class BookmarksController < ApplicationController
     end
     @bookmark.save
     sleep 2
-    redirect_to current_user, status: :see_other
+    respond_to do |format|
+      format.html
+      format.json { head => :no_content}
+    end
   end
 end

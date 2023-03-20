@@ -6,7 +6,10 @@ class FriendshipsController < ApplicationController
     authorize @friendship
     @friendship.save
     sleep 2
-    redirect_to @user, status: :see_other
+    respond_to do |format|
+      format.html
+      format.json { head => :no_content}
+    end
   end
 
   def destroy
@@ -17,7 +20,10 @@ class FriendshipsController < ApplicationController
     end
     authorize @friendship
     @friendship.destroy
-    redirect_to current_user, status: :see_other
+    respond_to do |format|
+      format.html
+      format.json { head => :no_content}
+    end
   end
 
   private

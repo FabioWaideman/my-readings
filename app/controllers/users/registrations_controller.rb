@@ -41,8 +41,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def after_update_path_for(resource)
-    current_user
+  def after_update_path_for(*)
+    respond_to do |format|
+      format.html
+      format.json { head => :no_content}
+    end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -56,8 +59,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
-    current_user
+  def after_sign_up_path_for(*)
+    respond_to do |format|
+      format.html
+      format.json { head => :no_content}
+    end
   end
 
   # The path used after sign up for inactive accounts.
