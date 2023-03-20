@@ -44,7 +44,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(*)
     respond_to do |format|
       format.html
-      format.json { head => :no_content}
+      format.json { head => :no_content }
     end
   end
 
@@ -62,7 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(*)
     respond_to do |format|
       format.html
-      format.json { head => :no_content}
+      format.json { head => :no_content }
     end
   end
 
