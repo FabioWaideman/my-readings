@@ -8,7 +8,7 @@ class FriendshipsController < ApplicationController
     sleep 2
     respond_to do |format|
       format.html
-      format.json { head => :no_content}
+      format.js {render inline: "location.reload();" }
     end
   end
 
@@ -22,7 +22,7 @@ class FriendshipsController < ApplicationController
     @friendship.destroy
     respond_to do |format|
       format.html
-      format.json { head => :no_content}
+      format.js {render inline: "location.reload();" }
     end
   end
 

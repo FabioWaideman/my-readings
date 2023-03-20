@@ -57,6 +57,6 @@ export default class extends Controller {
       title: link.dataset.message,
       showConfirmButton: false,
       timer: 3000
-    })
+    }).then(()=> {location.reload()})
   }
 }

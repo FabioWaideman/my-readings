@@ -7,7 +7,7 @@ class BookmarksController < ApplicationController
     sleep 2
     respond_to do |format|
       format.html
-      format.json { head => :no_content}
+      format.json { head => :no_content }
     end
   end
 
@@ -17,7 +17,7 @@ class BookmarksController < ApplicationController
     @bookmark.destroy
     respond_to do |format|
       format.html
-      format.json { head => :no_content}
+      format.json { head => :no_content }
     end
   end
 
@@ -30,10 +30,9 @@ class BookmarksController < ApplicationController
       @bookmark["read"] = true
     end
     @bookmark.save
-    sleep 2
     respond_to do |format|
       format.html
-      format.json { head => :no_content}
+      format.js {render inline: "location.reload();" }
     end
   end
 end
