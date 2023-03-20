@@ -27,11 +27,11 @@
                 input_html: { autocomplete: "current-password" } %>
   </div>
 
-  <div class="row">
+  <div class="row" data-controller="notifications">
     <div class="col-md-3"></div>
     <div class="col-md-2">
       <div class="form-actions">
-        <%= f.button :submit, "Update", class:"mybutton" %>
+        <%= f.button :submit, "Update", class:"mybutton", data: { action: "click->notifications#pop_up", message: "Profile updated!" } %>
       </div>
   </div>
 <% end %>
