@@ -7,7 +7,7 @@
           <% if @user.avatar.key %>
             <%= cl_image_tag @user.avatar.key, height:'230', width:'230', class: "border rounded", style:'object-fit:cover' %>
           <% else %>
-            <%= image_tag "avatar_placeholder", height:'230', width:'230', class: "border rounded", style:'object-fit:fit' %>
+            <%= image_tag "images/avatar_placeholder.jpg", height:'230', width:'230', class: "border rounded", style:'object-fit:fit' %>
           <% end %>
         </div>
         <div class="col-md-7 ms-2">
