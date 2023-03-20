@@ -15,12 +15,16 @@
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <div class="d-flex flex-row">
-              <% if review.user.avatar.key %>
-                <%= cl_image_tag(review.user.avatar.key, transformation: [{ width: 30, height: 30, crop: :thumb, gravity: :face, radius: :max }], class: "avatar rounded-circle") %>
-              <% else %>
-                <%= image_tag "avatar_placeholder", class: "avatar rounded-circle" %>
+              <%= link_to review.user, class:"text-decoration-none" do %>
+                <div class="d-flex flex-row">
+                    <% if review.user.avatar.key %>
+                      <%= cl_image_tag(review.user.avatar.key, transformation: [{ width: 30, height: 30, crop: :thumb, gravity: :face, radius: :max }], class: "avatar rounded-circle") %>
+                    <% else %>
+                      <%= image_tag "avatar_placeholder.jpg", class: "avatar rounded-circle" %>
+                    <% end %>
+                    <p class="card-text mx-2"><small class="text-muted"><%= review.user.username %> - <%= review.created_at.strftime("%d/%m/%Y") %></small></p>
+                </div>
               <% end %>
-              <p class="card-text mx-2"><small class="text-muted"><%= review.user.username %> - <%= review.created_at.strftime("%d/%m/%Y") %></small></p>
             </div>
             <div>
               <% if review.user == current_user %>
