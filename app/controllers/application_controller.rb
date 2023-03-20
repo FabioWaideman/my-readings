@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from Pundit::PolicyScopingNotPerformedError, with: :unpermitted_policy
 
+  rescue_from ActionController::Redirecting::UnsafeRedirectError do
+    redirect_to user_path(current_user), allow_other_host: true
+  end
+
   private
 
   def configure_permitted_parameters
@@ -20,7 +24,7 @@ class ApplicationController < ActionController::Base
     flash[:notice] = "Please, create o policy for this route!"
   end
 
-   def user_not_authorized
+  def user_not_authorized
     flash[:alert] = "You're NOT authorized to perform this action!"
     redirect_to root_path
   end
